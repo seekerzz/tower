@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://test_drawing"]
+
+[ext_resource type="Script" path="res://tests/test_drawing.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://drawing_manager" path="res://src/systems/DrawingManager.tscn" id="2_manager"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 20.0
+
+[node name="TestDrawing" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="DrawingManager" parent="." instance=ExtResource("2_manager")]
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2(500, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_1")
+
+[node name="Polygon2D" type="Polygon2D" parent="Ball"]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-20, -20, 20, -20, 20, 20, -20, 20)
