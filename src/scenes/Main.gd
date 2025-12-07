@@ -6,6 +6,10 @@ extends Node
 const ENEMY_SCENE = preload("res://src/entities/Enemy.tscn")
 
 func _ready():
+	# Wire up InteractionController
+	if has_node("InteractionController") and has_node("GridManager"):
+		$InteractionController.grid_manager = $GridManager
+
 	wave_manager.spawn_request.connect(_on_wave_manager_spawn_request)
 	SignalBus.enemy_reached_core.connect(_on_enemy_reached_core)
 
