@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://tests/test_waves.gd" id="1_test"]
+[ext_resource type="PackedScene" path="res://src/systems/WaveManager.tscn" id="2_manager"]
+
+[node name="TestWaves" type="Node"]
+script = ExtResource("1_test")
+
+[node name="WaveManager" parent="." instance=ExtResource("2_manager")]
