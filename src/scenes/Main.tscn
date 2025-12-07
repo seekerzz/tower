@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://main_scene"]
+
+[ext_resource type="Script" path="res://src/scenes/Main.gd" id="1_script"]
+[ext_resource type="Script" path="res://src/systems/GridManager.gd" id="2_grid"]
+[ext_resource type="Script" path="res://src/systems/WaveManager.gd" id="3_wave"]
+[ext_resource type="Script" path="res://src/systems/DrawingManager.gd" id="4_draw"]
+[ext_resource type="PackedScene" path="res://src/ui/GameUI.tscn" id="5_ui"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="GridOrigin" type="Node2D" parent="."]
+
+[node name="EntityLayer" type="Node2D" parent="."]
+
+[node name="GridManager" type="Node2D" parent="."]
+script = ExtResource("2_grid")
+
+[node name="WaveManager" type="Node" parent="."]
+script = ExtResource("3_wave")
+
+[node name="DrawingManager" type="Node2D" parent="."]
+script = ExtResource("4_draw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource("5_ui")]

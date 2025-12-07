@@ -1,0 +1,96 @@
+[gd_scene load_steps=2 format=3 uid="uid://game_ui"]
+
+[ext_resource type="Script" path="res://src/ui/GameUI.gd" id="1_script"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Gold" type="Label" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+text = "💰 0"
+
+[node name="Food" type="Label" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+text = "🍖 0/0"
+
+[node name="Mana" type="Label" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+text = "💧 0/0"
+
+[node name="Wave" type="Label" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+text = "Wave 1"
+
+[node name="CoreHP" type="Label" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+text = "❤️ 100/100"
+
+[node name="Center" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftPanel" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BuildContainer" type="HBoxContainer" parent="VBoxContainer/LeftPanel"]
+layout_mode = 2
+
+[node name="BottomPanel" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ShopContainer" type="HBoxContainer" parent="VBoxContainer/BottomPanel"]
+layout_mode = 2
+
+[node name="StartWaveBtn" type="Button" parent="VBoxContainer/BottomPanel"]
+layout_mode = 2
+text = "Start Wave"
+
+[node name="GameOverPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameOverPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+
+[connection signal="pressed" from="VBoxContainer/BottomPanel/StartWaveBtn" to="." method="_on_start_wave_pressed"]
