@@ -14,4 +14,5 @@ food_cost = 10
 mana_cost = 5
 attack_type = "ranged"
 proj_type = "magic"
+buff_provider_type = "none"
 desc = "Uses mana to attack."

@@ -12,6 +12,34 @@ var grid_units: Dictionary = {} # Vector2i -> Node2D
 func _ready() -> void:
 	queue_redraw()
 
+func recalculate_synergies() -> void:
+	# 1. Reset all buffs
+	for unit in grid_units.values():
+		if unit.get("applied_buffs") != null:
+			unit.applied_buffs.clear()
+
+	# 2. Apply buffs from providers
+	var neighbors_offsets = [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]
+
+	for pos in grid_units.keys():
+		var unit = grid_units[pos]
+		if not unit.get("stats") or unit.stats.get("buff_provider_type") == null or unit.stats.buff_provider_type == "none":
+			continue
+
+		var buff_type = unit.stats.buff_provider_type
+
+		for offset in neighbors_offsets:
+			var neighbor_pos = pos + offset
+			if grid_units.has(neighbor_pos):
+				var neighbor = grid_units[neighbor_pos]
+				if neighbor.get("applied_buffs") != null:
+					neighbor.applied_buffs.append(buff_type)
+
+	# 3. Update stats for all units
+	for unit in grid_units.values():
+		if unit.has_method("update_stats"):
+			unit.update_stats()
+
 func _draw() -> void:
 	var color = Color(1, 1, 1, 0.2)
 
@@ -84,4 +112,7 @@ func try_place_unit(unit_scene: PackedScene, grid_coord: Vector2i) -> bool:
 
 	print("Unit placed at ", grid_coord, ", Gold remaining: ", GameManager.gold)
 	unit_placed.emit(unit_instance, grid_coord)
+
+	recalculate_synergies()
+
 	return true
