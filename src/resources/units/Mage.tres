@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/UnitStats.gd" id="1_stats"]
+
+[resource]
+script = ExtResource("1_stats")
+unit_name = "Mage"
+icon = "🧙"
+cost = 40
+damage = 20
+range_val = 120.0
+atk_speed = 0.5
+food_cost = 10
+mana_cost = 5
+attack_type = "ranged"
+proj_type = "magic"
+desc = "Uses mana to attack."

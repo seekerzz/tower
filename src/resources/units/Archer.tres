@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/UnitStats.gd" id="1_stats"]
+
+[resource]
+script = ExtResource("1_stats")
+unit_name = "Archer"
+icon = "🏹"
+cost = 25
+damage = 10
+range_val = 150.0
+atk_speed = 0.8
+food_cost = 10
+mana_cost = 0
+attack_type = "ranged"
+proj_type = "arrow"
+desc = "A basic ranged unit."

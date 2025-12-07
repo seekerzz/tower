@@ -45,9 +45,17 @@ func _finish_drawing(screen_pos: Vector2):
 	preview_line.visible = false
 
 	var end_point = _get_global_pos(screen_pos)
+	var length = start_point.distance_to(end_point)
 
 	# Minimum length check
-	if start_point.distance_to(end_point) < 5.0:
+	if length < 5.0:
+		return
+
+	# Cost Calculation (e.g., 1 wood per pixel)
+	var cost = int(length)
+
+	if not GameManager.spend_material("wood", cost):
+		print("Material不足 (Needs %d wood)" % cost)
 		return
 
 	var barricade = BarricadeScene.instantiate()

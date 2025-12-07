@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/resources/UnitStats.gd" id="1_stats"]
+
+[resource]
+script = ExtResource("1_stats")
+unit_name = "Rat"
+icon = "🐀"
+cost = 10
+damage = 5
+range_val = 50.0
+atk_speed = 1.0
+food_cost = 5
+mana_cost = 0
+attack_type = "melee"
+proj_type = "dot"
+desc = "A small rat."
