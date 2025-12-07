@@ -45,3 +45,4 @@ func _end_wave():
 	is_wave_active = false
 	spawn_timer.stop()
 	emit_signal("wave_ended")
+	SignalBus.wave_ended.emit(current_wave)
