@@ -11,4 +11,5 @@ class_name UnitStats
 @export var mana_cost: int = 0
 @export var attack_type: String = "melee" # "melee", "ranged", "none"
 @export var proj_type: String = "dot"
+@export var buff_provider_type: String = "none" # "speed", "range", "none"
 @export_multiline var desc: String = ""

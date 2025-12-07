@@ -14,4 +14,5 @@ food_cost = 10
 mana_cost = 0
 attack_type = "ranged"
 proj_type = "arrow"
+buff_provider_type = "none"
 desc = "A basic ranged unit."
