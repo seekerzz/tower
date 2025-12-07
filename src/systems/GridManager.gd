@@ -14,12 +14,6 @@ func _ready() -> void:
 
 func _draw() -> void:
 	var color = Color(1, 1, 1, 0.2)
-
-	# Calculate top-left corner in local coordinates
-	# Center of tile (0,0) is at local (0,0)
-	# Center of tile (-grid_radius, -grid_radius) is at (-grid_radius * tile_size, -grid_radius * tile_size)
-	# Top-left of the entire grid area is offset by half tile size from the center of the top-left tile
-
 	var top_left_x = (-grid_radius * tile_size) - (tile_size / 2.0)
 	var top_left_y = (-grid_radius * tile_size) - (tile_size / 2.0)
 	var top_left = Vector2(top_left_x, top_left_y)
@@ -27,16 +21,13 @@ func _draw() -> void:
 	var total_tiles = grid_radius * 2 + 1
 	var total_size = total_tiles * tile_size
 
-	# Vertical lines
 	for i in range(total_tiles + 1):
 		var x = top_left.x + i * tile_size
 		draw_line(Vector2(x, top_left.y), Vector2(x, top_left.y + total_size), color)
 
-	# Horizontal lines
 	for i in range(total_tiles + 1):
 		var y = top_left.y + i * tile_size
 		draw_line(Vector2(top_left.x, y), Vector2(top_left.x + total_size, y), color)
-
 
 func world_to_grid(pos: Vector2) -> Vector2i:
 	var local_pos = to_local(pos)
@@ -50,7 +41,28 @@ func grid_to_world(coord: Vector2i) -> Vector2:
 func is_valid_grid_pos(coord: Vector2i) -> bool:
 	return abs(coord.x) <= grid_radius and abs(coord.y) <= grid_radius
 
-func try_place_unit(unit_scene: PackedScene, grid_coord: Vector2i) -> bool:
+func get_unit_at(coord: Vector2i) -> Node2D:
+	return grid_units.get(coord, null)
+
+func remove_unit_at(coord: Vector2i) -> void:
+	if grid_units.has(coord):
+		grid_units.erase(coord)
+
+func move_unit(from_coord: Vector2i, to_coord: Vector2i) -> bool:
+	if not grid_units.has(from_coord):
+		return false
+	if not is_valid_grid_pos(to_coord):
+		return false
+	if grid_units.has(to_coord):
+		return false # Target occupied
+
+	var unit = grid_units[from_coord]
+	grid_units.erase(from_coord)
+	grid_units[to_coord] = unit
+	unit.global_position = grid_to_world(to_coord)
+	return true
+
+func try_place_unit(grid_coord: Vector2i, unit_stats: UnitStats) -> bool:
 	if not is_valid_grid_pos(grid_coord):
 		print("Invalid grid position: ", grid_coord)
 		return false
@@ -59,29 +71,15 @@ func try_place_unit(unit_scene: PackedScene, grid_coord: Vector2i) -> bool:
 		print("Grid position occupied: ", grid_coord)
 		return false
 
+	var unit_scene = load("res://src/entities/Unit.tscn")
 	var unit_instance = unit_scene.instantiate()
 
-	# Determine cost
-	var cost = 0
-	if "stats" in unit_instance and unit_instance.stats:
-		cost = unit_instance.stats.cost
-	else:
-		# Fallback or check if we should look elsewhere
-		cost = 10 # Default for testing if no stats
+	unit_instance.stats = unit_stats
 
-	if GameManager.gold < cost:
-		print("Not enough gold. Cost: ", cost, ", Current: ", GameManager.gold)
-		unit_instance.queue_free()
-		return false
-
-	# Deduct gold
-	GameManager.spend_gold(cost)
-
-	# Place unit
 	add_child(unit_instance)
 	unit_instance.global_position = grid_to_world(grid_coord)
 	grid_units[grid_coord] = unit_instance
 
-	print("Unit placed at ", grid_coord, ", Gold remaining: ", GameManager.gold)
+	print("Unit placed at ", grid_coord)
 	unit_placed.emit(unit_instance, grid_coord)
 	return true
