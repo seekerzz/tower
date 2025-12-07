@@ -24,7 +24,6 @@ func grid_to_world(grid_pos: Vector2i) -> Vector2:
 	return Vector2(grid_pos.x * TILE_SIZE, grid_pos.y * TILE_SIZE)
 
 func try_place_unit(unit_key: String, grid_pos: Vector2i) -> bool:
-	var GameData = load("res://src/scripts/GameData.gd")
 	var unit_data = GameData.UNIT_TYPES[unit_key]
 
 	# Check for merge first

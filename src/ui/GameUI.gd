@@ -43,7 +43,6 @@ func show_game_over(wave):
 
 func setup_shop():
 	# Simple shop buttons
-	var GameData = load("res://src/scripts/GameData.gd")
 	for key in ["mouse", "turtle", "ranger", "plant"]: # Initial set
 		var btn = Button.new()
 		var unit = GameData.UNIT_TYPES[key]
@@ -59,11 +58,14 @@ func _on_buy_unit(key, cost):
 
 		# Find a free spot around 0,0 or ask user to place?
 		# Trigger placement mode in GridManager
-		var main = get_tree().root.get_node("Main")
-		main.start_placement(key)
+		var main = get_tree().current_scene
+		if main.name != "Main":
+			main = main.find_child("Main", true, false)
+
+		if main and main.has_method("start_placement"):
+			main.start_placement(key)
 
 func setup_build_panel():
-	var GameData = load("res://src/scripts/GameData.gd")
 	for key in GameData.MATERIAL_TYPES:
 		var btn = Button.new()
 		var mat = GameData.MATERIAL_TYPES[key]
@@ -72,8 +74,12 @@ func setup_build_panel():
 		build_container.add_child(btn)
 
 func _on_select_material(key):
-	var main = get_tree().root.get_node("Main")
-	main.start_drawing(key)
+	var main = get_tree().current_scene
+	if main.name != "Main":
+		main = main.find_child("Main", true, false)
+
+	if main and main.has_method("start_drawing"):
+		main.start_drawing(key)
 
 func _on_start_wave_pressed():
 	SignalBus.wave_started.emit(GameManager.wave)

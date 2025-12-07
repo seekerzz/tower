@@ -8,7 +8,6 @@ var props: Dictionary
 signal barricade_destroyed(barricade)
 
 func setup(p1: Vector2, p2: Vector2, material_type: String):
-	var GameData = load("res://src/scripts/GameData.gd")
 	if not GameData.BARRICADE_TYPES.has(material_type):
 		material_type = "wood"
 

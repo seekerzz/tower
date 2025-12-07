@@ -54,7 +54,6 @@ func create_barricade(p1, p2, material):
 	var barricade = StaticBody2D.new()
 	barricade.set_script(load("res://src/scripts/Barricade.gd"))
 
-	var GameData = load("res://src/scripts/GameData.gd")
 	var mat_data = GameData.BARRICADE_TYPES[material]
 
 	# Visual

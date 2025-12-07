@@ -19,7 +19,6 @@ var traits: Array = []
 func setup(key: String, _tile_pos: Vector2i):
 	tile_pos = _tile_pos
 	type_key = key
-	var GameData = load("res://src/scripts/GameData.gd")
 	stats = GameData.UNIT_TYPES[key].duplicate()
 
 	label.text = stats.icon

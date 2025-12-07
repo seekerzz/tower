@@ -65,7 +65,7 @@ func _unhandled_input(event):
 			var grid_pos = grid_manager.world_to_grid(mouse_pos)
 
 			if grid_manager.try_place_unit(placement_unit_key, grid_pos):
-				GameManager.consume_resource("gold", load("res://src/scripts/GameData.gd").UNIT_TYPES[placement_unit_key].cost)
+				GameManager.consume_resource("gold", GameData.UNIT_TYPES[placement_unit_key].cost)
 				placement_mode = false
 				if ghost_preview:
 					ghost_preview.queue_free()

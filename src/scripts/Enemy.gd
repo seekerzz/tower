@@ -25,7 +25,6 @@ func _ready():
 	# NavigationAgent setup would go here if we used navmesh, but we'll use simple movement towards 0,0 first
 
 func setup(type_key: String, wave_mod: float = 1.0):
-	var GameData = load("res://src/scripts/GameData.gd")
 	if not GameData.ENEMY_VARIANTS.has(type_key):
 		type_key = "slime"
 

@@ -1,4 +1,4 @@
-extends Node
+class_name GameData
 
 const TILE_SIZE = 60
 
