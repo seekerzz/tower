@@ -1,0 +1,127 @@
+[gd_scene load_steps=2 format=3 uid="uid://gameui12345"]
+
+[ext_resource type="Script" path="res://src/ui/GameUI.gd" id="1_script"]
+
+[node name="GameUI" type="CanvasLayer"]
+script = ExtResource("1_script")
+
+[node name="TopHUD" type="Panel" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopHUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HealthLabel" type="Label" parent="TopHUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "❤️ 100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaveLabel" type="Label" parent="TopHUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Wave 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResourceLabel" type="Label" parent="TopHUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "💰 0  🌽 0  💧 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomPanel" type="Panel" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -140.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ShopContainer" type="HBoxContainer" parent="BottomPanel/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Placeholder1" type="ColorRect" parent="BottomPanel/HBoxContainer/ShopContainer"]
+custom_minimum_size = Vector2(80, 120)
+layout_mode = 2
+color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[node name="Placeholder2" type="ColorRect" parent="BottomPanel/HBoxContainer/ShopContainer"]
+custom_minimum_size = Vector2(80, 120)
+layout_mode = 2
+color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[node name="Placeholder3" type="ColorRect" parent="BottomPanel/HBoxContainer/ShopContainer"]
+custom_minimum_size = Vector2(80, 120)
+layout_mode = 2
+color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[node name="Placeholder4" type="ColorRect" parent="BottomPanel/HBoxContainer/ShopContainer"]
+custom_minimum_size = Vector2(80, 120)
+layout_mode = 2
+color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[node name="VSeparator" type="VSeparator" parent="BottomPanel/HBoxContainer"]
+layout_mode = 2
+
+[node name="BenchContainer" type="HBoxContainer" parent="BottomPanel/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Slot1" type="Panel" parent="BottomPanel/HBoxContainer/BenchContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="Slot2" type="Panel" parent="BottomPanel/HBoxContainer/BenchContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="Slot3" type="Panel" parent="BottomPanel/HBoxContainer/BenchContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="Slot4" type="Panel" parent="BottomPanel/HBoxContainer/BenchContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="Slot5" type="Panel" parent="BottomPanel/HBoxContainer/BenchContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="BottomPanel/HBoxContainer"]
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="BottomPanel/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RefreshButton" type="Button" parent="BottomPanel/HBoxContainer/Buttons"]
+layout_mode = 2
+text = "🔄"
+
+[node name="ExpButton" type="Button" parent="BottomPanel/HBoxContainer/Buttons"]
+layout_mode = 2
+text = "🏗️"
