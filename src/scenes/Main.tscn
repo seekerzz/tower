@@ -1,0 +1,25 @@
+[gd_scene load_steps=8 format=3 uid="uid://main"]
+
+[ext_resource type="Script" path="res://src/scenes/Main.gd" id="1_main"]
+[ext_resource type="PackedScene" uid="uid://gridmanager" path="res://src/systems/GridManager.tscn" id="2_grid"]
+[ext_resource type="PackedScene" uid="uid://wavemanager" path="res://src/systems/WaveManager.tscn" id="3_wave"]
+[ext_resource type="PackedScene" uid="uid://gameui" path="res://src/ui/GameUI.tscn" id="4_ui"]
+[ext_resource type="PackedScene" uid="uid://interaction" path="res://src/systems/InteractionController.tscn" id="5_int"]
+[ext_resource type="PackedScene" uid="uid://drawing" path="res://src/systems/DrawingManager.tscn" id="6_draw"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="GridManager" parent="." instance=ExtResource("2_grid")]
+
+[node name="WaveManager" parent="." node_paths=PackedStringArray("grid_manager") instance=ExtResource("3_wave")]
+grid_manager = NodePath("../GridManager")
+
+[node name="DrawingManager" parent="." instance=ExtResource("6_draw")]
+
+[node name="InteractionController" parent="." node_paths=PackedStringArray("grid_manager") instance=ExtResource("5_int")]
+grid_manager = NodePath("../GridManager")
+
+[node name="GameUI" parent="." instance=ExtResource("4_ui")]

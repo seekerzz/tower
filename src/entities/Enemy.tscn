@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://enemy"]
+
+[ext_resource type="Script" path="res://src/entities/Enemy.gd" id="1_enemy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_enemy"]
+radius = 20.0
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_enemy")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+text = "👾"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_enemy")
