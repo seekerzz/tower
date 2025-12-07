@@ -18,3 +18,4 @@ config/icon="res://icon.svg"
 
 SignalBus="*res://src/autoload/SignalBus.gd"
 GameManager="*res://src/autoload/GameManager.gd"
+GameData="*res://src/autoload/GameData.gd"
