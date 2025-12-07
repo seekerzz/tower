@@ -20,6 +20,10 @@ func _physics_process(_delta):
 
 	move_and_slide()
 
+	if global_position.distance_to(target_position) < 30.0:
+		SignalBus.enemy_reached_core.emit(damage)
+		queue_free()
+
 func take_damage(amount: float):
 	current_hp -= amount
 	if current_hp <= 0:
@@ -27,4 +31,6 @@ func take_damage(amount: float):
 
 func die():
 	print("Enemy died. Dropping item.")
+	GameManager.add_gold(10)
+	GameManager.add_material("mucus", 1)
 	queue_free()

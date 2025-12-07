@@ -2,6 +2,7 @@ extends Node
 
 signal unit_purchased(unit_data)
 signal enemy_spawned(enemy_data)
+signal enemy_reached_core(damage)
 signal game_over(final_wave)
 
 # Optional but useful
