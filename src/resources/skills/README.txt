@@ -1,0 +1,1 @@
+Store Skill Logic Resources here (e.g., Fireball.tres)

@@ -4,7 +4,7 @@ extends Node
 @onready var entity_layer = $EntityLayer
 
 const ENEMY_SCENE = preload("res://src/entities/Enemy.tscn")
-const EVENT_PANEL_SCENE = preload("res://src/ui/EventPanel.tscn")
+const EVENT_PANEL_SCENE = preload("res://src/ui/panels/EventPanel.tscn")
 
 func _ready():
 	# Wire up InteractionController

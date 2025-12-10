@@ -1,0 +1,1 @@
+Store Trait Resources here (e.g., Vampiric.tres)

@@ -1,6 +1,6 @@
 extends Node
 
-const PROJECTILE_SCENE = preload("res://src/objects/Projectile.tscn")
+const PROJECTILE_SCENE = preload("res://src/entities/projectiles/Projectile.tscn")
 
 func spawn_projectile(parent: Node, from_pos: Vector2, target: Variant, _type: String = "default", damage: int = 1):
 	var projectile = PROJECTILE_SCENE.instantiate()

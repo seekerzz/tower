@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c8y4k2x6v1lq"]
 
-[ext_resource type="Script" path="res://src/ui/EventPanel.gd" id="1_script"]
+[ext_resource type="Script" path="res://src/ui/panels/EventPanel.gd" id="1_script"]
 
 [node name="EventPanel" type="CanvasLayer"]
 process_mode = 3
